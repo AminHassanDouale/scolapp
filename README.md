@@ -281,14 +281,14 @@ Ce projet est sous licence propriétaire. Tous droits réservés à ScolApp © 2
 
 ## 🤝 Contribuer
 
-Nous accueillons les contributions de la communauté éducative djiboutienne. Consultez notre guide de contribution pour plus d'informations.
+Nous accueillons les contributions de la communauté éducative. Consultez notre guide de contribution pour plus d'informations.
 
 ---
 
 <p align="center">
   <a href="https://scolapp.com">Site Web</a> •
-  <a href="https://scolapp.com/demo">Démo</a> •
-  <a href="https://scolapp.com/docs">Documentation</a> •
+  <a href="https://scolapp.com">Démo</a> •
+  <a href="https://scolapp.com">Documentation</a> •
   <a href="mailto:contact@scolapp.com">Contact</a>
 </p>
 
