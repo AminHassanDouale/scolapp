@@ -1,101 +1,297 @@
-# 🚀 Launch UI – Next.js Website Components Template
+# 📚 ScolApp – Solution de Gestion Scolaire Complète
 
-A comprehensive collection of production-ready website components built with Next.js, Shadcn/ui, and Tailwind CSS. Perfect for developers looking to quickly build modern, responsive websites with the power of shadcn/ui components.
+Une plateforme de gestion scolaire moderne et complète conçue spécifiquement pour les établissements d'enseignement de tous niveaux : maternelle, primaire, collège, lycée et université. Construite avec Next.js, TypeScript, et Tailwind CSS pour une performance optimale.
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-blue)](https://tailwindcss.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
-[![shadcn/ui](https://img.shields.io/badge/shadcn/ui-latest-black)](https://ui.shadcn.com/)
-
-<img src="https://launchuicomponents.com/preview.gif" alt="Launch UI components mockups" />
+[![React](https://img.shields.io/badge/React-19-blue)](https://reactjs.org/)
 
 > [!TIP]
-> **Tailwind v4 + React 19:**
-> Launch UI v2.0 adds full support for Tailwind v4, React 19 and Next.js 15.
-> If you're using Tailwind 3, a version that supports it is still maintained on a [separate branch](https://github.com/launch-ui/launch-ui/tree/tailwind-3).
+> **Multi-plateforme :** ScolApp est disponible sur Web, iOS et Android avec synchronisation en temps réel de toutes vos données.
 
-## 🚀 Quick Start
+## 🚀 Démarrage Rapide
 
-1. Install dependencies:
+1. Cloner le repository :
+
+```bash
+git clone https://github.com/votre-organisation/scolapp.git
+cd scolapp
+```
+
+2. Installer les dépendances :
 
 ```bash
 npm install
 ```
 
-2. Start the development server:
+3. Configurer les variables d'environnement :
+
+```bash
+cp .env.example .env.local
+```
+
+4. Lancer le serveur de développement :
 
 ```bash
 npm run dev
 ```
 
-3. Open [http://localhost:3000](http://localhost:3000) to view your site
+5. Ouvrir [http://localhost:3000](http://localhost:3000) pour voir l'application
 
-## 📚 Resources
+## 🌟 Fonctionnalités Principales
 
-- [Live Preview](https://launchuicomponents.com/preview)
-- [Documentation](https://www.launchuicomponents.com/docs/getting-started/introduction)
+- 🎓 **Multi-niveaux** : Supporte maternelle, primaire, collège, lycée et université
+- 📱 **Cross-platform** : Applications Web, iOS et Android natives
+- 🌍 **Interface Bilingue** : Français et Arabe pour le marché djiboutien
+- 💰 **Système Financier** : Gestion complète des paiements et factures
+- 📊 **Rapports Avancés** : Plus de 50 types de rapports personnalisables
+- 📱 **SMS Intégré** : Communications automatiques avec les parents
+- 🔐 **Sécurité Renforcée** : Chiffrement SSL et contrôle d'accès par rôles
+- ⚡ **Performance Optimisée** : Interface rapide et réactive
+- ♿ **Accessibilité** : Conforme aux standards WCAG
 
-## ✨ Features
+## 🏫 Niveaux d'Enseignement Supportés
 
-- 🎨 **Modern Design System**: Built on top of shadcn/ui, offering a clean and professional look
-- 📱 **Fully Responsive**: All components work perfectly across desktop, tablet, and mobile devices
-- ⚡ **Performance Optimized**: Leverages Next.js 14 features for optimal loading speed
-- 🌗 **Dark Mode Support**: Seamless light/dark mode switching with system preference detection
-- ♿ **Accessibility First**: WCAG compliant components for inclusive web experiences
-- 🎯 **SEO Optimized**: Built with best practices for search engine visibility
+### 🐣 Maternelle
 
-## 🧱 Components
+- Suivi des activités d'éveil
+- Communication avec les parents
+- Gestion des repas et siestes
+- Suivi du développement
 
-### Included
+### 📖 Primaire
 
-- **Navbar**: Modern navigation component with multiple variants including static and floating styles. Features dropdown menus, mobile responsiveness, and seamless dark mode support
-- **Hero**: Stunning hero sections with multiple variants including illustration-based layouts, glowing effects, and mobile app showcases. Built for strong first impressions and effective message delivery
-- **Items**: Flexible grid system for feature lists, pricing tables, and product showcases. Includes both default and branded variants with responsive layouts
-- **Logos**: Clean logo showcase component with static grid layout. Perfect for displaying brand partnerships and client logos with consistent styling
-- **FAQ**: Comprehensive FAQ component with expandable accordions. Features smooth animations and responsive design for optimal user experience
-- **Stats**: Versatile statistics display component with horizontal, tiles, and grid layouts. Perfect for showcasing statistics, big numbers, key metrics and data points
-- **CTA**: Powerful call-to-action component with multiple styles including box layouts and beam effects. Designed to create compelling sections that drive user engagement
-- **Footer**: Versatile footer with multiple layout variants including default, minimal, and multi-column styles. Perfect for organizing site information and links
+- Gestion des matières fondamentales
+- Système de notation adapté
+- Suivi des devoirs
+- Communication école-famille
 
-### In [Pro version](https://launchuicomponents.com/pricing)
+### 🎒 Collège
 
-- **Bento Grid**: Advanced masonry-style grid system for creating visually appealing content arrangements. Perfect for showcasing features, products, or content in an elegant, card-based layout
-- **Feature**: Sophisticated feature showcase with flexible illustration placements and mockup displays. Includes multiple layout options while maintaining shadcn's consistent design language
-- **Social Proof**: Advanced social proof displays with masonry layouts, marquee animations, and clickable cards. Built for showcasing user feedback in engaging ways
-- **Tabs**: Fully customizable tabs with left, top, and bottom alignments. Built with accessibility in mind for seamless content organization
-- **Carousel**: Dynamic carousel component with multiple variants. Features smooth animations, responsive design, and customizable navigation controls
-- **Testimonials**: Comprehensive testimonials component with grid layouts, carousels, and static displays. Designed for beautiful, accessible customer feedback showcases
+- Emplois du temps complexes
+- Système de notation par matières
+- Gestion des options
+- Orientation scolaire
 
-## 🛠️ Tech Stack
+### 🎓 Lycée
 
-- **Framework**: [Next.js 15](https://nextjs.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Animations**: CSS animations and transitions
-- **Icons**: Lucide icons
+- Spécialités et filières
+- Préparation aux examens
+- Orientation universitaire
+- Stages et projets
 
-## 💡 Use Cases
+### 🏛️ Université
 
-Launch UI was made for products that need a great-looking, conversion-optimized landing page that speaks to proffessional quality-oriented audiences.
+- Gestion des cursus
+- Système de crédits ECTS
+- Recherche et projets
+- Vie étudiante
 
-Perfect for building landing pages for:
+## 🛠️ Modules Inclus
 
-- 🛠️ **Developer Tools**: Present APIs, SDKs, CLI tools, and technical infrastructure products
-- 🤖 **AI-Powered Applications**: Showcase products made with AI, assistants, agents and automation tools
-- 💻 **SaaS Products**: Launch web applications, productivity tools, and business solutions
-- 📱 **Mobile Apps**: Promote iOS and Android applications with beautiful app showcases
-- 🚀 **Startup Products**: Perfect for indie hackers, solo founders, and technical startups
-- ⚡ **Technical Products**: Ideal for technical products, development tools, and programming software
+### Administration
 
-## 📝 License
+- **Gestion des Utilisateurs** : Étudiants, enseignants, parents, staff
+- **Rôles et Permissions** : Contrôle d'accès granulaire
+- **Multi-campus** : Gestion de plusieurs établissements
+- **Paramétrage Avancé** : Configuration flexible du système
 
-This repository is licensed under the [MIT License](https://github.com/launch-ui/launch-ui/blob/main/LICENSE.md).
+### Académique
+
+- **Programmes d'Études** : Création et gestion des cursus
+- **Emplois du Temps** : Planification automatisée
+- **Examens et Notes** : Système d'évaluation complet
+- **Bulletins** : Génération automatique
+
+### Financier
+
+- **Inscriptions** : Gestion des frais d'inscription
+- **Factures** : Génération automatique
+- **Paiements** : Suivi des échéances
+- **Budgets** : Gestion financière complète
+
+### Communication
+
+- **Portails Dédiés** : Enseignants, parents, étudiants
+- **SMS Automatiques** : Alertes et notifications
+- **Messagerie Interne** : Communication sécurisée
+- **Notifications** : Alertes en temps réel
+
+### Rapports et Analytics
+
+- **Tableaux de Bord** : Métriques en temps réel
+- **Rapports Académiques** : Performance des étudiants
+- **Analyses Financières** : Suivi budgétaire
+- **Exports** : PDF, Excel, CSV
+
+## 📱 Applications Mobiles
+
+### iOS App
+
+- Interface native optimisée
+- Notifications push
+- Mode hors-ligne partiel
+- Touch ID / Face ID
+
+### Android App
+
+- Material Design
+- Notifications push
+- Synchronisation automatique
+- Biométrie
+
+## 🌍 Localisation
+
+- **Français** : Langue principale
+- **Arabe** : Support complet RTL
+- **Dates et Formats** : Calendrier hijri et grégorien
+- **Devises** : Franc djiboutien (DJF)
+
+## 🔧 Stack Technique
+
+- **Frontend** : [Next.js 15](https://nextjs.org/) avec React 19
+- **Styling** : [Tailwind CSS 4.0](https://tailwindcss.com/)
+- **UI Components** : [shadcn/ui](https://ui.shadcn.com/)
+- **Language** : [TypeScript 5.0](https://www.typescriptlang.org/)
+- **Base de Données** : PostgreSQL avec Prisma ORM
+- **Authentification** : NextAuth.js
+- **Paiements** : Intégration locale djiboutienne
+- **SMS** : Gateway SMS local
+- **Mobile** : React Native (iOS/Android)
+
+## 📊 SEO et Analytics
+
+### Optimisation SEO
+
+- **Mots-clés ciblés** : Gestion scolaire Djibouti, EdTech Afrique
+- **Contenu localisé** : Adapté au marché éducatif djiboutien
+- **Performance** : Core Web Vitals optimisés
+- **Structured Data** : Schema.org pour applications éducatives
+
+### Analytics Intégrées
+
+- **Google Analytics 4** : Suivi comportemental
+- **Métriques métier** : Engagement par niveau d'enseignement
+- **Conversion tracking** : Démonstrations → abonnements
+- **Performance monitoring** : Uptime et vitesse
+
+## 🚀 Cas d'Usage
+
+### Établissements Privés
+
+- Écoles internationales
+- Établissements bilingues
+- Écoles spécialisées
+
+### Secteur Public
+
+- Écoles publiques
+- Universités d'État
+- Centres de formation
+
+### Groupes Éducatifs
+
+- Réseaux d'écoles
+- Franchises éducatives
+- Organisations multi-campus
+
+## 📈 Métriques de Performance
+
+- **Uptime** : 99.9% SLA garanti
+- **Vitesse** : < 2s temps de chargement
+- **Sécurité** : Chiffrement bout-en-bout
+- **Scalabilité** : Support de 10,000+ utilisateurs par instance
+
+## 🏆 Avantages Concurrentiels
+
+### Spécificités Locales
+
+- **Calendrier Académique** : Adapté au système djiboutien
+- **Réglementation** : Conforme aux lois éducatives locales
+- **Support Local** : Équipe technique sur place
+- **Langues** : Interface bilingue français/arabe
+
+### Innovation Technique
+
+- **IA Intégrée** : Prédictions de performance étudiante
+- **Blockchain** : Certification des diplômes
+- **IoT** : Capteurs pour la présence automatique
+- **ML** : Détection précoce du décrochage scolaire
+
+## 📞 Support et Formation
+
+### Support Technique
+
+- **Hotline** : +253 77 04 94 95
+- **Email** : support@scolapp.com
+- **Chat** : Support en temps réel
+- **Documentation** : Guides complets
+
+### Formation
+
+- **Formation initiale** : 40h pour les administrateurs
+- **Webinaires** : Sessions mensuelles
+- **Tutoriels vidéo** : Bibliothèque complète
+- **Certification** : Programme de certification utilisateurs
+
+## 💳 Modèle Tarifaire
+
+### Essentiel (Maternelle/Primaire)
+
+- Jusqu'à 500 élèves
+- Modules de base
+- Support email
+
+### Professionnel (Collège/Lycée)
+
+- Jusqu'à 2000 élèves
+- Tous les modules
+- Support téléphonique
+
+### Entreprise (Université/Multi-campus)
+
+- Utilisateurs illimités
+- Personnalisation avancée
+- Support dédié
+
+## 🚀 Roadmap
+
+### Q1 2025
+
+- [ ] Launch applications mobiles
+- [ ] Module de e-learning intégré
+- [ ] API publique v1.0
+
+### Q2 2025
+
+- [ ] IA pour recommandations pédagogiques
+- [ ] Intégration avec systèmes bancaires
+- [ ] Module de gestion des transports
+
+### Q3 2025
+
+- [ ] Blockchain pour les diplômes
+- [ ] Réalité augmentée pour les cours
+- [ ] Analytics prédictives avancées
+
+## 📄 Licence
+
+Ce projet est sous licence propriétaire. Tous droits réservés à ScolApp © 2025.
+
+## 🤝 Contribuer
+
+Nous accueillons les contributions de la communauté éducative djiboutienne. Consultez notre guide de contribution pour plus d'informations.
 
 ---
 
 <p align="center">
-  <a href="https://launchuicomponents.com">Website</a> •
-  <a href="https://launchuicomponents.com/docs">Documentation</a> •
-  <a href="https://launchuicomponents.com/preview">Preview</a>
+  <a href="https://scolapp.com">Site Web</a> •
+  <a href="https://scolapp.com/demo">Démo</a> •
+  <a href="https://scolapp.com/docs">Documentation</a> •
+  <a href="mailto:contact@scolapp.com">Contact</a>
+</p>
+
+<p align="center">
+  <strong>🎓 Révolutionnons l'éducation djiboutienne ensemble</strong>
 </p>
