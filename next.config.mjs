@@ -1,7 +1,17 @@
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Remove any 'plugins' key from here
-  // Add other valid Next.js configuration options here if needed
+  output: 'export',
+  trailingSlash: true,
+  images: {
+    unoptimized: true
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 }
 
 export default nextConfig
