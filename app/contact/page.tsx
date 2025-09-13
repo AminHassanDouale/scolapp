@@ -16,7 +16,9 @@ import {
   Headphones,
   Globe,
   ArrowRight,
-  Shield
+  Shield,
+  AlertCircle,
+  Loader2
 } from "lucide-react";
 
 interface FormData {
@@ -39,13 +41,50 @@ const ContactPage = () => {
     message: '',
     type: 'demo'
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setIsSubmitting(true);
+    setError('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Erreur lors de l\'envoi du message');
+      }
+
+      setIsSubmitted(true);
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        organization: '',
+        subject: '',
+        message: '',
+        type: 'demo'
+      });
+      
+      // Hide success message after 5 seconds
+      setTimeout(() => setIsSubmitted(false), 5000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -71,7 +110,7 @@ const ContactPage = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: 'Email',
-      details: ['contact@ScolApp.com', 'support@ScolApp.com'],
+      details: ['contact@scolapp.com', 'support@scolapp.com'],
       gradient: 'from-purple-500 to-pink-500'
     },
     {
@@ -107,10 +146,10 @@ const ContactPage = () => {
   ];
 
   const faq = [
-   {
-  question: "Comment puis-je obtenir une démonstration ?",
-  answer: "Nous vous enverrons un accès (email et mot de passe) afin de tester la démonstration et découvrir la solution en détail."
-},
+    {
+      question: "Comment puis-je obtenir une démonstration ?",
+      answer: "Nous vous enverrons un accès (email et mot de passe) afin de tester la démonstration et découvrir la solution en détail."
+    },
     {
       question: "Quel est le délai de mise en œuvre ?",
       answer: "La mise en œuvre standard prend entre 48h à 1 semaine selon la complexité de votre établissement. Nous vous accompagnons à chaque étape."
@@ -127,9 +166,6 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
-      {/* Navigation */}
-      
-
       {/* Hero Section */}
       <motion.section 
         initial={{ opacity: 0, y: -20 }}
@@ -197,11 +233,12 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* Main Content */}
+      {/* Main Content - CONTACT FORM SECTION */}
       <section className="py-20">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
-            {/* Contact Form */}
+            
+            {/* LEFT SIDE - CONTACT FORM */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -211,7 +248,43 @@ const ContactPage = () => {
               <div className="p-8 bg-white shadow-xl rounded-3xl">
                 <h2 className="mb-6 text-2xl font-bold text-gray-900">Envoyez-nous un message</h2>
                 
+                {/* Success Message */}
+                {isSubmitted && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="p-4 mb-6 border border-green-200 bg-green-50 rounded-xl"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="w-5 h-5 text-green-600" />
+                      <div className="text-green-800">
+                        <div className="font-medium">Message envoyé avec succès!</div>
+                        <div className="text-sm">Nous vous répondrons dans les plus brefs délais.</div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Error Message */}
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="p-4 mb-6 border border-red-200 bg-red-50 rounded-xl"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <AlertCircle className="w-5 h-5 text-red-600" />
+                      <div className="text-red-800">
+                        <div className="font-medium">Erreur</div>
+                        <div className="text-sm">{error}</div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+                
+                {/* THE ACTUAL FORM */}
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  
                   {/* Contact Type */}
                   <div>
                     <label className="block mb-2 text-sm font-medium text-gray-700">
@@ -221,7 +294,7 @@ const ContactPage = () => {
                       name="type"
                       value={formData.type}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-3 transition-colors border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
                       <option value="demo">Demande de démonstration</option>
                       <option value="support">Support technique</option>
@@ -231,7 +304,7 @@ const ContactPage = () => {
                     </select>
                   </div>
 
-                  {/* Name and Email */}
+                  {/* Name and Email Row */}
                   <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div>
                       <label className="block mb-2 text-sm font-medium text-gray-700">
@@ -245,8 +318,8 @@ const ContactPage = () => {
                           value={formData.name}
                           onChange={handleChange}
                           required
-                          className="w-full py-3 pl-10 pr-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          placeholder="Votre nom"
+                          className="w-full py-3 pl-10 pr-4 transition-colors border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          placeholder="Votre nom complet"
                         />
                       </div>
                     </div>
@@ -262,14 +335,14 @@ const ContactPage = () => {
                           value={formData.email}
                           onChange={handleChange}
                           required
-                          className="w-full py-3 pl-10 pr-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          className="w-full py-3 pl-10 pr-4 transition-colors border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           placeholder="votre@email.com"
                         />
                       </div>
                     </div>
                   </div>
 
-                  {/* Phone and Organization */}
+                  {/* Phone and Organization Row */}
                   <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div>
                       <label className="block mb-2 text-sm font-medium text-gray-700">
@@ -282,7 +355,7 @@ const ContactPage = () => {
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          className="w-full py-3 pl-10 pr-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          className="w-full py-3 pl-10 pr-4 transition-colors border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           placeholder="+253 XX XX XX XX"
                         />
                       </div>
@@ -298,8 +371,8 @@ const ContactPage = () => {
                           name="organization"
                           value={formData.organization}
                           onChange={handleChange}
-                          className="w-full py-3 pl-10 pr-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          placeholder="Nom de votre école"
+                          className="w-full py-3 pl-10 pr-4 transition-colors border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          placeholder="Nom de votre école/établissement"
                         />
                       </div>
                     </div>
@@ -316,7 +389,7 @@ const ContactPage = () => {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-3 transition-colors border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="Objet de votre message"
                     />
                   </div>
@@ -332,22 +405,23 @@ const ContactPage = () => {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 border border-gray-300 resize-none rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Décrivez votre besoin ou votre question..."
+                      className="w-full px-4 py-3 transition-colors border border-gray-300 resize-none rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Décrivez votre besoin, votre question ou votre projet en détail..."
                     />
                   </div>
 
                   {/* Submit Button */}
                   <motion.button
                     type="submit"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="flex items-center justify-center w-full px-6 py-4 space-x-2 font-semibold text-white transition-all duration-300 shadow-lg bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl hover:shadow-xl"
+                    disabled={isSubmitting}
+                    whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                    whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                    className="flex items-center justify-center w-full px-6 py-4 space-x-2 font-semibold text-white transition-all duration-300 shadow-lg bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    {isSubmitted ? (
+                    {isSubmitting ? (
                       <>
-                        <CheckCircle className="w-5 h-5" />
-                        <span>Message envoyé!</span>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        <span>Envoi en cours...</span>
                       </>
                     ) : (
                       <>
@@ -358,19 +432,20 @@ const ContactPage = () => {
                   </motion.button>
                 </form>
 
+                {/* Privacy Notice */}
                 <div className="p-4 mt-6 bg-blue-50 rounded-xl">
                   <div className="flex items-start space-x-3">
                     <Shield className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                     <div className="text-sm text-blue-700">
                       <div className="mb-1 font-medium">Vos données sont protégées</div>
-                      <div>Nous respectons votre confidentialité et ne partageons jamais vos informations.</div>
+                      <div>Nous respectons votre confidentialité et ne partageons jamais vos informations personnelles.</div>
                     </div>
                   </div>
                 </div>
               </div>
             </motion.div>
 
-            {/* Services & Info */}
+            {/* RIGHT SIDE - Services & Info */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -399,10 +474,6 @@ const ContactPage = () => {
                               </li>
                             ))}
                           </ul>
-                          <button className="flex items-center space-x-1 text-sm font-medium text-blue-600 transition-colors hover:text-blue-700">
-                            <span>{service.cta}</span>
-                            <ArrowRight className="w-4 h-4" />
-                          </button>
                         </div>
                       </div>
                     </div>
@@ -426,9 +497,6 @@ const ContactPage = () => {
           </div>
         </div>
       </section>
-
-      {/* Map Section (Placeholder) */}
-     
 
       {/* Footer */}
       <footer className="py-16 text-white bg-gray-900">
